@@ -1,3 +1,7 @@
 attachment:
   attach_file: Adjuntar fitxer
   description: Adjunts
+site_admin_menu:
+  storage_management: Magatzems de dades
+aspect:
+  attachments: Adjunts. (permet arxius adjunts)

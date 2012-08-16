@@ -1,3 +1,7 @@
 attachment:
   attach_file: Adjuntar fichero
   description: Adjuntos  
+site_admin_menu:
+  storage_management: Almacenes de datos
+aspect:
+  attachments: Adjuntos. (permite ficheros adjuntos) 

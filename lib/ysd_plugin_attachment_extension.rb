@@ -21,89 +21,62 @@ module Huasi
                                                               
     end
    
-    # ========= Information ========= 
-   
-    #
-    # Information
-    #
-    def content_element_info(context={})
-      app = context[:app]
-      {:id => 'attachment', :description => "#{app.t.attachment.description}"} 
-    end
- 
-    # ========= Content render ========
+    # --------- Menus --------------------
     
     #
-    # Renders the context custom
+    # It defines the admin menu menu items
     #
-    # @param [Hash] the context
-    # @param [Object] the content
+    # @return [Array]
+    #  Menu definition
     #
-    def content_custom(context={}, content)
-    
-      app = context[:app]
-      
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)
-      renderer.render('view','',{:element => content})
-    
-    end
-     
-    # ========= CMS Extension ========= 
-
-    #
-    # Renders the tab
-    #
-    def content_element_form_tab(context={})
-      app = context[:app]
-      info = content_element_info(context)
-      render_tab("#{info[:id]}_form", info[:description])
-    end
-
-    #
-    # Add fields to edit the photo information in the content form
-    #
-    def content_element_form(context={})
+    def menu(context={})
       
       app = context[:app]
-      
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
-      photo_form = renderer.render('form', 'em')     
-    
-    end
-    
-    #
-    # Support to edit the photo information in the content form
-    #
-    def content_element_form_extension(context={})
-    
-      app = context[:app]
 
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
-      photo_form_extension = renderer.render('formextension', 'em')
-        
-              
-    end
+      menu_items = [{:path => '/configuration/storages',              
+                     :options => {:title => app.t.site_admin_menu.storage_management,
+                                  :link_route => "/storage-management",
+                                  :description => 'Manage the data storages. It allows to define attachments recipients.',
+                                  :module => :attachment,
+                                  :weight => 3}}]                      
     
-    #
-    # Renders the tab
-    #
-    def content_element_template_tab(context={})
-      app = context[:app]
-      info = content_element_info(context)
-      render_tab("#{info[:id]}_template", info[:description])
     end    
+
+    # ========= Routes ===================
     
+    # routes
     #
-    # Show the attachment information in the content render
+    # Define the module routes, that is the url that allow to access the funcionality defined in the module
     #
-    def content_element_template(context={})
+    #
+    def routes(context={})
     
-       app = context[:app]
-    
-       renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
-       photo_template = renderer.render('view', 'em')
-                
+      routes = [{:path => '/storage-management',
+                 :regular_expression => /^\/storage-management/, 
+                 :title => 'Storage', 
+                 :description => 'Manages the data storages: creation and update of data storages',
+                 :fit => 1,
+                 :module => :attachment }]
+      
     end
+   
+    # ========= Aspects ==================
     
+    #
+    # Retrieve an array of the aspects defined in the plugin
+    #
+    # The attachment aspect (complement)
+    #
+    def aspects(context={})
+      
+      app = context[:app]
+      
+      aspects = []
+      aspects << ::Plugins::Aspect.new(:attachments, app.t.aspect.attachments, [:entity], AttachmentAspectDelegate.new)
+                                               
+      return aspects
+       
+    end   
+       
   end
 end

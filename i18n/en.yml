@@ -1,3 +1,7 @@
 attachment:
   attach_file: Attach file
   description: Attachments
+site_admin_menu:
+  storage_management: Storages
+aspect:
+  attachments: Attachments. (it allows to attach files)
