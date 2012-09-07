@@ -7,8 +7,9 @@ module Huasi
     #
     # @param [Hash] the context
     # @param [Object] the element
+    # @param [Object] aspect model
     #
-    def custom(context={}, element)
+    def custom(context={}, element, aspect_model)
     
       app = context[:app]
       
@@ -30,7 +31,7 @@ module Huasi
     #
     # Edit Form tab
     #
-    def element_form_tab(context={})
+    def element_form_tab(context={}, aspect_model)
       app = context[:app]
       info = element_info(context)
       render_tab("#{info[:id]}_form", info[:description])
@@ -39,7 +40,7 @@ module Huasi
     #
     # Edition form
     #
-    def element_form(context={})
+    def element_form(context={}, aspect_model)
       
       app = context[:app]
       
@@ -51,7 +52,7 @@ module Huasi
     #
     # Edition extension
     #
-    def element_form_extension(context={})
+    def element_form_extension(context={}, aspect_model)
     
       app = context[:app]
 
@@ -64,7 +65,7 @@ module Huasi
     #
     # View tab
     #
-    def element_template_tab(context={})
+    def element_template_tab(context={}, aspect_model)
       app = context[:app]
       info = element_info(context)
       render_tab("#{info[:id]}_template", info[:description])
@@ -73,7 +74,7 @@ module Huasi
     #
     # View
     #
-    def element_template(context={})
+    def element_template(context={}, aspect_model)
     
        app = context[:app]
     
