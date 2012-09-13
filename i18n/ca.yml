@@ -1,3 +1,12 @@
+storage:
+  description: <p>Aquesta pàgin mostra els magatzems de dades. Els <strong>magatzems de dades</strong> contenen els arxius adjunts. Per poder utilitzar el sistem d'arxius adjunts, s\'ha de definir almenys un magatzem de dades. Existeixen diversos adaptadors que ens permeten emmagatzemar les dades en Google Drive, DropBox o el sistema d\'arxius.</p>
+  title: Magatzems de dades
+  id: Id
+  adapter: Adaptador
+  account: Compte
+  id_description: L'identificador del magatzem de dades
+  adapter_description: El tipus d'emmagatzenament
+  account_description: El compte utilitzat per accedir al magatzem de dades
 attachment:
   attach_file: Adjuntar fitxer
   description: Adjunts

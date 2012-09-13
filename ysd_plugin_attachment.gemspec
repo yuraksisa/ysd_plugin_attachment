@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
     
   s.add_runtime_dependency "ysd_core_plugins"
   s.add_runtime_dependency "ysd_md_attachment"
-  s.add_runtime_dependency "ysd_ui_fieldset_renders"  
+  s.add_runtime_dependency "ysd_ui_fieldset_renders"    
+  s.add_runtime_dependency "ysd_plugin_entitymanagement"
   
 end

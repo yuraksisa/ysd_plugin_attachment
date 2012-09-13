@@ -8,7 +8,7 @@ Plugins::SinatraAppPlugin.register :attachment do
    description= 'Add attachments'
    version=     '0.1'
    hooker       Huasi::AttachmentExtension
-   sinatra_extension Sinatra::Attachment
+   sinatra_extension Sinatra::YSD::Attachment
    sinatra_extension Sinatra::YSD::StorageManagement
    sinatra_extension Sinatra::YSD::StorageManagementRESTApi
 end

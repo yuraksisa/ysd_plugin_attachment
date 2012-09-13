@@ -1,3 +1,12 @@
+storage:
+  description: <p>This page shows data storages. Attachments are stored in <strong>data storages</strong>. You must define at least one data storage before using attach files to contents, messages, ... There exist some adapters which allows to store the files in Google Drive, Dropbox or the file system.</p>
+  title: Storage
+  id: Id
+  adapter: Adapter
+  account: Account
+  id_description: The storage identifier
+  adapter_description: The storage type
+  account_description: The account used to access the storage system
 attachment:
   attach_file: Attach file
   description: Attachments

@@ -5,13 +5,15 @@ require 'mime/types'
 # Routes
 #
 module Sinatra
+  module YSD
     module Attachment
     
       def self.registered(app)
-     
+
         # Add the local folders to the views and translations     
-        app.settings.translations = Array(app.settings.translations).push(File.expand_path(File.join(File.dirname(__FILE__), '..', 'i18n')))       
-                
+        app.settings.views = Array(app.settings.views).push(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'views')))
+        app.settings.translations = Array(app.settings.translations).push(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'i18n')))       
+                     
         #
         # Creates a new attachment
         #
@@ -93,5 +95,6 @@ module Sinatra
                
        end
        
-     end # ContentPhoto
+     end # Attachment
+  end # YSD
 end # Sinatra
