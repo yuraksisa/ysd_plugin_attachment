@@ -13,7 +13,7 @@ module Huasi
     
       app = context[:app]
       
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)
+      renderer = UI::FieldSetRender.new('attachment', app)
       renderer.render('view','',{:element => element})
     
     end  
@@ -44,7 +44,7 @@ module Huasi
       
       app = context[:app]
       
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
+      renderer = UI::FieldSetRender.new('attachment', app)      
       photo_form = renderer.render('form', 'em')     
     
     end
@@ -56,7 +56,7 @@ module Huasi
     
       app = context[:app]
 
-      renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
+      renderer = UI::FieldSetRender.new('attachment', app)      
       photo_form_extension = renderer.render('formextension', 'em')
         
               
@@ -78,7 +78,7 @@ module Huasi
     
        app = context[:app]
     
-       renderer = UIFieldSetRender::FieldSetRender.new('attachment', app)      
+       renderer = UI::FieldSetRender.new('attachment', app)      
        template = renderer.render('view', 'em')
                 
     end
