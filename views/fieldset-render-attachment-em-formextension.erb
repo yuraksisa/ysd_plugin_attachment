@@ -13,6 +13,10 @@
   /* ----------------------------
      Attachment Plugin
      ---------------------------- */
+
+require(['jquery', 'YSDEntityManagementComplementHooks', 'YSDMemoryDataSource', 'YSDListViewer', 'YSDListManagement', 'YSDEventTarget', 'YSDjson2' ]
+        function($, EntityManagementComplementHooks, MemoryDataSource, ListViewer, ListManagement, EventTarget ) {
+
      
   AttachmentPlugin = function() {
   
@@ -35,11 +39,11 @@
         attachments[idx].download_url = "<a target=\"_blank\" href=\"/attachment/" + attachments[idx].id + "\">" + attachments[idx].description + "</a>";
       }
     
-      var memoryDataSource = new YsdForms.MemoryDataSource(attachments, {id:'id', description:'download_url'});
+      var memoryDataSource = new MemoryDataSource(attachments, {id:'id', description:'download_url'});
       
-      var selector = new YsdForms.ListViewer('attachment_template',
-                                             'content_attachment_view',
-                                              memoryDataSource);
+      var selector = new ListViewer('attachment_template',
+                                    'content_attachment_view',
+                                    memoryDataSource);
     	
     	
     }
@@ -59,9 +63,9 @@
       
       var attachments = entity?entity.attachments:[];
             
-      var memoryDataSource = new YsdForms.MemoryDataSource(attachments, {id:'id', description:'description'});
+      var memoryDataSource = new MemoryDataSource(attachments, {id:'id', description:'description'});
       
-      this.selector = new YsdForms.ListManagement('attachment_form', 
+      this.selector = new ListManagement('attachment_form', 
                                                   'content_attachment', 
                                                   memoryDataSource);
      
@@ -83,14 +87,10 @@
     }
   	
   }
-  
-  if (typeof YSD.entityManagement.complementHooks != 'undefined') {
+  	
+  var attachmentPlugin = new AttachmentPlugin();
+  EntityManagementComplementHooks.register(attachmentPlugin);	
 	
-    var attachmentPlugin = new AttachmentPlugin();
-    YSD.entityManagement.complementHooks.register(attachmentPlugin);	
-	
-  }   
-
 
   /************************
    *
@@ -121,7 +121,7 @@
 
   AttachmentModel = function() {
   	
-	this.events = new YSD.EventTarget();	
+	this.events = new EventTarget();	
   	this.state = 'initiate';
 
     this.addListener = function(type, listener) { /* addListener */
@@ -252,6 +252,6 @@
       	
   }
 
-
+ });
 
 </script>
