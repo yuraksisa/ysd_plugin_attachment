@@ -1,3 +1,4 @@
+require 'ysd_md_attachment_base'
 require 'ysd-plugins_viewlistener' unless defined?Plugins::ViewListener
 
 #
@@ -72,7 +73,7 @@ module Huasi
       app = context[:app]
       
       aspects = []
-      aspects << ::Plugins::Aspect.new(:attachments, app.t.aspect.attachments, [:entity], AttachmentAspectDelegate.new)
+      aspects << ::Plugins::Aspect.new(:attachments, app.t.aspect.attachments, Model::Attachment, AttachmentAspectDelegate.new)
                                                
       return aspects
        
