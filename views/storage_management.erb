@@ -1,5 +1,9 @@
 <%= include('entity-management') %>
 
+<script type="text/tmpl" id="elements_title">
+  <h2 class="entity-title"><%=t.storage.title%></h2>
+</script>
+
 <!-- Renders the element description -->
 <script type="text/tmpl" id="elements_description">
     <%= t.storage.description %>
@@ -52,12 +56,6 @@
               
      <form name="element">
         
-        <div class="top-navigation-bar navigation-bar">
-             <h2 class="form-title"><%=t.storage.title%></h2>
-             <div class="navigation-bar-nav-buttons">
-             </div>
-        </div>        
-
         <div class="form-fields">
         
           <div class="formrow">
@@ -99,6 +97,8 @@
 
 <script type="text/javascript">
  
+require(['jquery','YSDEntityManagement','YSDRemoteDataSource','YSDSelectSelector'], function($, EntityManagement, RemoteDataSource, SelectSelector){
+
   function StorageHook() {
  	   
     this.entityKey = function(entity) {
@@ -119,13 +119,13 @@
         
     this.configForm = function(entity) {
              
-      var dataSourceAccount = new YsdForms.RemoteDataSource('/external-service-accounts',{'id':'id','description':'id'});
+      var dataSourceAccount = new RemoteDataSource('/external-service-accounts',{'id':'id','description':'id'});
       var valueAccount = (entity && entity.account_id)?entity.account_id:null; 
-      var selectorAccount = new YsdForms.SelectSelector('account[id]', dataSourceAccount, valueAccount, true );             
+      var selectorAccount = new SelectSelector('account[id]', dataSourceAccount, valueAccount, true );             
 
-      var dataSourceAdapter = new YsdForms.RemoteDataSource('/storage-adapters',{'id':'id','description':'id'});
+      var dataSourceAdapter = new RemoteDataSource('/storage-adapters',{'id':'id','description':'id'});
       var valueAdapter = (entity && entity.adapter)?entity.adapter:null; 
-      var selector = new YsdForms.SelectSelector('adapter', dataSourceAdapter, valueAdapter, true );             
+      var selector = new SelectSelector('adapter', dataSourceAdapter, valueAdapter, true );             
 
      	
     }
@@ -135,7 +135,7 @@
     
   var urls = { 
   	           query_url  : '/storages',
-    	       create_url : '/storage',
+    	         create_url : '/storage',
   	           update_url : '/storage',
   	           delete_url : '/storage',
   	           get_url    : '/storage'
@@ -144,7 +144,6 @@
   var storageHook = new StorageHook();
   var storageManager = new EntityManagement(urls, '<%= t.storage.title %>', 12, storageHook);
  
-  $('.entity-title').html('<%= t.storage.title %>');
-  
+});
   
 </script>

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "ysd_plugin_attachment"
-  s.version = "0.1"
+  s.version = "0.1.1"
   s.authors = ["Yurak Sisa Dream"]
   s.date    = "2012-07-30"
   s.email   = ["yurak.sisa.dream@gmail.com"]
@@ -12,6 +12,5 @@ Gem::Specification.new do |s|
     
   s.add_runtime_dependency "ysd_core_plugins"
   s.add_runtime_dependency "ysd_md_attachment"
-  s.add_runtime_dependency "ysd_plugin_yito_ui" 
-  
+   
 end
