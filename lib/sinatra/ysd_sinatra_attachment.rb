@@ -35,8 +35,6 @@ module Sinatra
                            params[:file][:filename]
                          end
            
-           puts "file size : #{size} bytes"
-           
            storage = ::Model::Storage.get(storage_id)              
            attachment = ::Model::FileAttachment.create_from_io(storage, remote_file, io_attachment, size)
         

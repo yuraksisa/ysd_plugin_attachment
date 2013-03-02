@@ -16,7 +16,7 @@ module Huasi
     #
     def install(context={})
             
-        SystemConfiguration::Variable.first_or_create({:name => 'default_storage'}, 
+        SystemConfiguration::Variable.first_or_create({:name => 'attachment.default_storage'}, 
                                                       {:value => '', :description => 'Default storage for attachments', :module => :attachment}) 
        
                                                               

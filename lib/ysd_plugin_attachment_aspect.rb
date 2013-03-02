@@ -5,7 +5,7 @@ module Huasi
         include ContentManagerSystem::Support
     
     #
-    # Custom representation (the attachments)
+    # Custom representation of the attachments)
     #
     # @param [Hash] the context
     # @param [Object] the element
@@ -40,7 +40,7 @@ module Huasi
     end
 
     #
-    # Edition form
+    # Form edition
     #
     def element_form(context={}, aspect_model)
       
@@ -52,7 +52,7 @@ module Huasi
     end
     
     #
-    # Edition extension
+    # Form extension
     #
     def element_form_extension(context={}, aspect_model)
     
