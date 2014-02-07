@@ -34,9 +34,17 @@ module Sinatra
                          else
                            params[:file][:filename]
                          end
-           
+
            storage = ::Model::Storage.get(storage_id)              
-           attachment = ::Model::FileAttachment.create_from_io(storage, remote_file, io_attachment, size)
+          
+           attachment_file_set = if params[:file_set_attachment] and not params[:file_set_attachment].empty?
+                                     Model::FileSetAttachment.get(params[:file_set_attachment])
+                                   else
+                                     Model::FileSetAttachment.new
+                                   end               
+           
+           attachment = attachment_file_set.add_attachment_from_io(storage, remote_file, io_attachment, size)
+             
         
            status 200
            attachment.to_json
@@ -50,8 +58,9 @@ module Sinatra
         app.get "/attachment/:id" do
         
            if file_attachment = ::Model::FileAttachment.get(params[:id])
-             
-             file_content_type = MIME::Types.type_for(file_attachment.path).last.to_s
+            
+             file_content_type = MIME::Types.type_for(file_attachment.path).first.to_s
+
              content_type file_content_type
   
              stream(:keep_open => false) do |out|

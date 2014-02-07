@@ -1,8 +1,8 @@
-<% if element.attachments and element.attachments.length > 0 %>
+<% if element.file_set_attachment and element.file_set_attachment.file_attachments.length > 0 %>
 <div class="attachment_template">
   <h3><%=t.attachment.description%></h3>
   <ul class="attachments-list">
-  <% element.get_attachments.each do |attachment| %>
+  <% element.file_set_attachment.file_attachments.each do |attachment| %>
     <li class="attachment-element"><a target="_blank" href="<%="/attachment/#{attachment.id}"%>"><%=attachment.path%> (<%=attachment.literal_file_size%>)</a></li>
   <% end %>
   </ul>

@@ -1,6 +1,7 @@
 <form name="attachments" target="attachment_uploader" method="POST" enctype="multipart/form-data" action="/attachment" style="display:none">
   <input type="file" name="file" id="file"/>
-  <input type="hidden" name="storage" id="storage"/>
+  <input type="hidden" name="file_set_attachment" id="file_set_attachment"/>
+  <input type="hidden" name="storage" id="storage" value="<%= attachment_storage%>"/>
   <input type="hidden" name="folder" id="folder"/>
 </form>
 
@@ -28,7 +29,7 @@ require(['jquery', 'YSDEntityManagementComplementHooks', 'YSDMemoryDataSource', 
     
     this.onEdit = function(entity) {
 	
-	  this.configForm(entity);
+	    this.configForm(entity);
 	    	
     }
     
@@ -48,19 +49,21 @@ require(['jquery', 'YSDEntityManagementComplementHooks', 'YSDMemoryDataSource', 
     	
     }
     
-    this.adaptFormData = function(data) { /* Adapt the form data -before of sending the form-*/
-      	
-      data.attachments = [];
-      
-      for (var idx=0; idx < this.selector.getData().length; idx++) {
-        data.attachments.push(this.selector.getData()[idx].id);
+    this.adaptFormData = function(data) {
+
+      if (data && data.file_set_attachment.id == '') {
+        delete data.file_set_attachment;
       }
-    
-      return data;	
+
+      return data;
     }
-    
+
     this.configForm = function(entity) {
       
+      if (entity != null) {
+        $($('input[name=file_set_attachment]')[0]).val(entity.field_set_attachment_id);
+      }
+
       var attachments = entity?entity.attachments:[];
             
       var memoryDataSource = new MemoryDataSource(attachments, {id:'id', description:'description'});
@@ -80,6 +83,9 @@ require(['jquery', 'YSDEntityManagementComplementHooks', 'YSDMemoryDataSource', 
       attachment.addListener('file_uploaded',       
         function(event) {
            var file = event.data.file;
+           if ($('input[name=file_set_attachment\\[id\\]]').val() == '') {
+             $('input[name=file_set_attachment\\[id\\]]').val(file.file_set_attachment_id);
+           }
            selector.addElement({id:file.id, description: file.description});
         });
 

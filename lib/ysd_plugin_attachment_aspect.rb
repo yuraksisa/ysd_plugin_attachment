@@ -58,10 +58,12 @@ module Huasi
     
       app = context[:app]
 
+      locals = {:attachment_storage => 
+                SystemConfiguration::Variable.get_value('attachment.default_storage')}
+
       renderer = ::UI::FieldSetRender.new('attachment', app)      
-      photo_form_extension = renderer.render('formextension', 'em')
+      photo_form_extension = renderer.render('formextension', 'em', locals)
         
-              
     end
     
     #
