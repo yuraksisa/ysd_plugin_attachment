@@ -70,7 +70,8 @@ require(['jquery', 'YSDEntityManagementComplementHooks', 'YSDMemoryDataSource', 
       
       this.selector = new ListManagement('attachment_form', 
                                          'content_attachment', 
-                                          memoryDataSource);
+                                          memoryDataSource,
+                                          '<%=t.attachment_aspect.form.upload_file%>');
      
       var attachment = new Attachment();
       

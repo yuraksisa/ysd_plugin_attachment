@@ -26,6 +26,10 @@ storage:
 attachment:
   attach_file: Attach file
   description: Attachments
+attachment_aspect:
+  form:
+    title: Files attached
+    upload_file: Add file      
 site_admin_menu:
   storage_management: Storages
 aspect:

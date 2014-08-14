@@ -27,6 +27,10 @@ storage:
 attachment:
   attach_file: Adjuntar fitxer
   description: Adjunts
+attachment_aspect:
+  form:
+    title: Fitxers adjunts
+    upload_file: Afegir fitxer
 site_admin_menu:
   storage_management: Magatzems de dades
 aspect:

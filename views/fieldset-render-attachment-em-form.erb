@@ -1,4 +1,9 @@
-<div id="attachment_form">
-  <input type="hidden" name="file_set_attachment[id]"
+<div id="attachment_form" class="bottom-margin-1line">
+  <div class="formrow">	
+    <label for="album[id]" class="fieldtitle bottom-border-solid">
+      <%=t.attachment_aspect.form.title%>
+    </label>
+    <input type="hidden" name="file_set_attachment[id]"
      <%% if (entity) { %>value="<%%=entity.file_set_attachment_id%>"<%% } %>/>
+  </div>
 </div>

@@ -26,6 +26,10 @@ storage:
 attachment:
   attach_file: Adjuntar fichero
   description: Adjuntos  
+attachment_aspect:
+  form:
+    title: Ficheros adjuntos
+    upload_file: Añadir fichero      
 site_admin_menu:
   storage_management: Almacenes de datos
 aspect:

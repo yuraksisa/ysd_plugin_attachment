@@ -10,10 +10,15 @@
   <%= render_variable_select('attachment.default_storage',
           t.files_settings.form.default_storage, storages) %>
   <% else %>
-  <a href="/admin/site/files/storages/new?destination=/admin/site/files/config"><%= t.media_settings.form.create_storage%></a>
+  <a href="/admin/site/files/storages/new?destination=/admin/site/files/config"><%= t.files_settings.form.create_storage%></a>
   <% end %>
   <div class="top-margin-1line">
-  <a href="/admin/site/files/storages"><%= t.media_settings.form.see_storages%></a>
+  <a href="/admin/site/files/storages"><%= t.files_settings.form.see_storages%></a>
+  </div>
+
+  <div class="formrow-botonera">
+    <input type="submit" value="<%=t.entitymanagement.update%>" 
+           class="button blue-button">
   </div>
 
 </form>
