@@ -1,3 +1,15 @@
+files_dashboard:
+  title: Files
+  storages: Files storages
+  config: Configuration  
+files_settings:
+  form:
+    title: Files configuration
+    storage_group: Storages
+    storage_description: Set up where your web site files are stored   
+    default_storage: Files storage
+    create_storage: Create a file storage
+    see_storages: Show file storages  
 storage:
   description: <p>This page shows data storages. Attachments are stored in <strong>data storages</strong>. You must define at least one data storage before using attach files to contents, messages, ... There exist some adapters which allows to store the files in Google Drive, Dropbox or the file system.</p>
   title: Storage
@@ -7,6 +19,10 @@ storage:
   id_description: The storage identifier
   adapter_description: The storage type
   account_description: The account used to access the storage system
+  form_validation:
+    id_required: Id required
+    adapter_required: Adapter required
+    account_required: Account required 
 attachment:
   attach_file: Attach file
   description: Attachments

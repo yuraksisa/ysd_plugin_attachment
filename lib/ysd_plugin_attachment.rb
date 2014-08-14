@@ -1,4 +1,5 @@
 require 'sinatra/ysd_sinatra_attachment'
+require 'sinatra/ysd_sinatra_files_dashboard'
 require 'sinatra/ysd_sinatra_storage_management'
 require 'sinatra/ysd_sinatra_storage_management_rest_api'
 require 'ysd_plugin_attachment_aspect'

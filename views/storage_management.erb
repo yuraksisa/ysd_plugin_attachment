@@ -54,7 +54,7 @@
 
 <script type="text/tmpl" id="element_template_form">
               
-     <form name="element">
+     <form name="element" id="form_storages">
         
         <div class="form-fields">
         
@@ -91,58 +91,4 @@
      </form>
      
 
-</script>
-
-
-<script type="text/javascript">
- 
-require(['jquery','YSDEntityManagement','YSDRemoteDataSource','YSDSelectSelector'], function($, EntityManagement, RemoteDataSource, SelectSelector){
-
-  function StorageHook() {
- 	   
-    this.entityKey = function(entity) {
-      return entity.id;
-    }
-
-    this.onNew = function() {
-  	  $('#id').focus();
-  	  this.configForm(null);
-    };
-    
-    this.onEdit = function(entity) {
-      $('#id').attr('readonly', true);
-      $('#adapter').focus();  	
-      this.configForm(entity);
-    };
-  
-        
-    this.configForm = function(entity) {
-             
-      var dataSourceAccount = new RemoteDataSource('/external-service-accounts',{'id':'id','description':'id'});
-      var valueAccount = (entity && entity.account_id)?entity.account_id:null; 
-      var selectorAccount = new SelectSelector('account[id]', dataSourceAccount, valueAccount, true );             
-
-      var dataSourceAdapter = new RemoteDataSource('/storage-adapters',{'id':'id','description':'id'});
-      var valueAdapter = (entity && entity.adapter)?entity.adapter:null; 
-      var selector = new SelectSelector('adapter', dataSourceAdapter, valueAdapter, true );             
-
-     	
-    }
-        
-  	
-  };
-    
-  var urls = { 
-  	           query_url  : '/storages',
-    	         create_url : '/storage',
-  	           update_url : '/storage',
-  	           delete_url : '/storage',
-  	           get_url    : '/storage'
-  	         };
-  
-  var storageHook = new StorageHook();
-  var storageManager = new EntityManagement(urls, '<%= t.storage.title %>', 12, storageHook);
- 
-});
-  
 </script>

@@ -7,7 +7,7 @@ module Sinatra
         #
         # Retrieve all the storages
         #
-        app.get "/storages" do
+        app.get "/api/storages" do
           data = ::Model::Storage.all
           
           content_type :json
@@ -17,7 +17,7 @@ module Sinatra
         #
         # Retrive storages
         #
-        ["/storages","/storages/page/:page"].each do |path|
+        ["/api/storages","/api/storages/page/:page"].each do |path|
           app.post path do
             
             data, total = ::Model::Storage.find_all
@@ -32,7 +32,7 @@ module Sinatra
         #
         # Retrieve the storage adapters
         #
-        app.get "/storage-adapters" do
+        app.get "/api/storage-adapters" do
         
           adapters = []
           adapters << { :id => 'googledrive', :description => 'googledrive' }
@@ -46,7 +46,7 @@ module Sinatra
         #
         # Retrieve an storage
         #
-        app.get "/storage/:id" do
+        app.get "/api/storage/:id" do
           
           storage = Model::Storage.get(params[:id])
 
@@ -59,7 +59,7 @@ module Sinatra
         #
         # Create an storage
         #
-        app.post "/storage" do
+        app.post "/api/storage" do
         
           request.body.rewind
           storage_request = JSON.parse(URI.unescape(request.body.read))
@@ -78,7 +78,7 @@ module Sinatra
         #
         # Updates a menu
         #
-        app.put "/storage" do
+        app.put "/api/storage" do
         
           request.body.rewind
           storage_request = JSON.parse(URI.unescape(request.body.read))
@@ -98,7 +98,7 @@ module Sinatra
         end
         
         # Deletes a menu
-        app.delete "/storage" do
+        app.delete "/api/storage" do
 
           request.body.rewind
           storage_request = JSON.parse(URI.unescape(request.body.read))

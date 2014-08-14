@@ -36,7 +36,7 @@ module Huasi
 
       menu_items = [{:path => '/configuration/storages',              
                      :options => {:title => app.t.site_admin_menu.storage_management,
-                                  :link_route => "/storage-management",
+                                  :link_route => "/admin/site/files/storages",
                                   :description => 'Manage the data storages. It allows to define attachments recipients.',
                                   :module => :attachment,
                                   :weight => 3}}]                      
@@ -52,8 +52,8 @@ module Huasi
     #
     def routes(context={})
     
-      routes = [{:path => '/storage-management',
-                 :regular_expression => /^\/storage-management/, 
+      routes = [{:path => '/admin/site/files/storages',
+                 :regular_expression => /^\/admin\/site\/files\/storages/, 
                  :title => 'Storage', 
                  :description => 'Manages the data storages: creation and update of data storages',
                  :fit => 1,

@@ -1,0 +1,88 @@
+require(['jquery','YSDEntityManagement','YSDRemoteDataSource','YSDSelectSelector'], function($, EntityManagement, RemoteDataSource, SelectSelector){
+
+  function StorageHook() {
+ 	   
+    this.entityKey = function(entity) {
+      return entity.id;
+    }
+
+    this.onNew = function() {
+  	  $('#id').focus();
+  	  this.configForm(null);
+    };
+    
+    this.onEdit = function(entity) {
+      $('#id').attr('readonly', true);
+      $('#adapter').focus();  	
+      this.configForm(entity);
+    };
+  
+        
+    this.configForm = function(entity) {
+      
+      this.configValidation();
+
+      var dataSourceAccount = new RemoteDataSource('/external-service-accounts',{'id':'id','description':'id'});
+      var valueAccount = (entity && entity.account_id)?entity.account_id:null; 
+      var selectorAccount = new SelectSelector('account[id]', dataSourceAccount, valueAccount, true );             
+
+      var dataSourceAdapter = new RemoteDataSource('/api/storage-adapters',{'id':'id','description':'id'});
+      var valueAdapter = (entity && entity.adapter)?entity.adapter:null; 
+      var selector = new SelectSelector('adapter', dataSourceAdapter, valueAdapter, true );             
+
+     	
+    }
+        
+    this.configValidation = function() {
+
+      $('#form_storages').validate({
+        submitHandler: function(form) 
+        {
+          return false;
+        },
+                               
+        rules : { // rules
+          'id': {
+             required: true
+          },
+          'adapter': {
+              required: true
+          },
+          'account[id]': {
+              required: true
+          }
+        },
+            
+        messages : { // messages
+          'id': {
+             required : '<%=t.storage.form_validation.id_required%>'
+          },
+          'adapter': {
+             required : '<%=t.storage.form_validation.adapter_required%>'
+          },
+          'account[id]': {
+             required : '<%=t.storage.form_validation.account_required%>'
+          }
+        }
+            
+      }
+         );      
+
+
+    }
+
+  	
+  };
+    
+  var urls = { 
+  	           query_url  : '/api/storages',
+    	         create_url : '/api/storage',
+  	           update_url : '/api/storage',
+  	           delete_url : '/api/storage',
+  	           get_url    : '/api/storage'
+  	         };
+  
+  var storageHook = new StorageHook();
+  var storageManager = new EntityManagement(urls, '<%= t.storage.title %>', 12, storageHook, {prefix: '/admin/site/files'});
+ 
+});

@@ -7,8 +7,8 @@ module Sinatra
         #
         # Storage management page
         #        
-        app.get "/storage-management/?*" do
-          load_page 'storage_management'.to_sym
+        app.get "/admin/site/files/storages/?*" do
+          load_em_page :storage_management, :storages, false
         end
         
       

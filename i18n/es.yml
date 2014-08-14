@@ -1,3 +1,15 @@
+files_dashboard:
+  title: Ficheros
+  storages: Almacenes datos
+  config: Configuración
+files_settings:
+  form:
+    title: Configuración ficheros
+    storage_group: Almacenamiento
+    storage_description: Define donde se almacenan los ficheros de tu sitio web
+    default_storage: Almacén de ficheros
+    create_storage: Crear almacén de ficheros
+    see_storages: Ver almacenes de ficheros
 storage:
   description: <p>Esta página muestra los almacenes de datos. En los <strong>almacenes de datos</strong> se almacenan los archivos adjuntos. Para poder utilizar el sistema de adjuntos es imprescindible definir por lo menos un almacen de datos. Existen múltiplen adaptadores que nos permiten almacenar los datos en Google Drive, Dropbox o el sistema de archivos locales.</p>
   title: Almacen de datos
@@ -7,6 +19,10 @@ storage:
   id_description: El identificador del almacen de datos
   adapter_description: El tipo de almacenamiento de datos
   account_description: La cuenta utilizada para acceder al almacén de datos
+  form_validation:
+    id_required: Id obligatorio
+    adapter_required: Adaptador obligatorio
+    account_required: Cuenta obligatoria
 attachment:
   attach_file: Adjuntar fichero
   description: Adjuntos  

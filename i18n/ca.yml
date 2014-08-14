@@ -1,5 +1,18 @@
+files_dashboard:
+  title: Fitxers
+  storages: Magatzems dades
+  config: Configuració  
+files_settings:
+  form:
+    title: Configuració de fitxers
+    storage_group: Magatzem
+    storage_description: Defineix on es guarden els fitxers de la teva web
+    default_storage: Magatzem de fitxers
+    create_storage: Nou magatzem de fitxers
+    see_storages: Veure els magatzems de fitxers
 storage:
-  description: <p>Aquesta pàgin mostra els magatzems de dades. Els <strong>magatzems de dades</strong> contenen els arxius adjunts. Per poder utilitzar el sistem d'arxius adjunts, s\'ha de definir almenys un magatzem de dades. Existeixen diversos adaptadors que ens permeten emmagatzemar les dades en Google Drive, DropBox o el sistema d\'arxius.</p>
+  description: >
+               <p>Aquesta pàgin mostra els magatzems de dades. Els <strong>magatzems de dades</strong> contenen els arxius adjunts. Per poder utilitzar el sistem d'arxius adjunts, s\'ha de definir almenys un magatzem de dades. Existeixen diversos adaptadors que ens permeten emmagatzemar les dades en Google Drive, DropBox o el sistema d\'arxius.</p>
   title: Magatzems de dades
   id: Id
   adapter: Adaptador
@@ -7,6 +20,10 @@ storage:
   id_description: L'identificador del magatzem de dades
   adapter_description: El tipus d'emmagatzenament
   account_description: El compte utilitzat per accedir al magatzem de dades
+  form_validation:
+    id_required: Id obligatori
+    adapter_required: Adaptador obligatori
+    account_required: Compte obligatoria  
 attachment:
   attach_file: Adjuntar fitxer
   description: Adjunts
