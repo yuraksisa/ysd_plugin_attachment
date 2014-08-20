@@ -12,5 +12,7 @@ Plugins::SinatraAppPlugin.register :attachment do
    sinatra_extension Sinatra::YSD::FilesDashboard   
    sinatra_extension Sinatra::YSD::StorageManagement
    sinatra_extension Sinatra::YSD::StorageManagementRESTApi
+   sinatra_extension Sinatra::YSD::FileManagement
+   sinatra_extension Sinatra::YSD::FileManagementRESTApi   
 end
 

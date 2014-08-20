@@ -1,0 +1,133 @@
+<%= include('entity-management') %>
+
+<script type="text/tmpl" id="elements_title">
+  <h2 class="entity-title"><%=t.album_management.form.title%></h2>
+</script>
+
+<!-- Renders the element description -->
+<script type="text/tmpl" id="elements_description">
+  <%=t.album_management.form.description%>
+</script>
+
+<!-- Renders the elements container -->
+<script type="text/tmpl" id="elements_container_template">
+
+  <div id="elements_tbody" class="entity-blocks-container">
+  </div>
+
+</script>
+
+<!-- Renders one element in the elements list view -->
+        
+<script type="text/tmpl" id="elements_list_template">
+
+  <div class="entity-block-container">
+    <div class="entity-block-container-inside all-space">
+      <div style="height:108px">
+        <div class="box-shadow element-row-selector" style="width:144px; height: 108px" rel="<%%= index %>">
+          <span class="centered_text" style="font-size:5em; display: block" data-icon="&#xe62e;"></span> 
+        </div> 
+      </div>
+      <div>
+        <div class="smaller_text less_contrast_text centered_text top-margin"><%%= entity.name || entity.id %></div>
+        <div class="right_text">
+          <span class="smaller_text" data-icon="&#xe602;"> 
+            <%% if (entity && entity.file_attachments) { %> 
+              <%%= entity.file_attachments.length %> 
+            <%% } else { %>
+              0
+            <%% } %> 
+          </span> 
+          <span class="smaller_text element-row-selector" rel="<%%= index %>" data-icon="&#xe082;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<!-- Renders one element in the element view (full detailed) -->
+
+<script type="text/tmpl" id="element_template">
+
+
+</script>
+
+<!-- Renders the form to edit an element -->
+
+<script type="text/tmpl" id="element_template_form">
+              
+     <form name="element" id="form_folder">
+        <%% if (entity == null) { %>
+        <div class="form-fields container_12">
+          <div class="grid_12">
+            <h3 class="bottom-border-solid"><%=t.file_management.form.new_folder%></h3>
+            <%= partial :alert %>
+            <input type="hidden" name="root" id="root" value="true"/>
+            <div class="formrow">
+              <label for="name" class="fieldtitle"><%=t.file_management.form.name.label%> <span class="mandatoryfield">*</span></label>
+              <input type="text" maxlength="80" size="80" id="name" name="name" class="fieldcontrol"/>
+            </div>                   
+            <div class="bottom-navigation-bar navigation-bar">
+             <div class="navigation-bar-crud-buttons">
+                <input type="submit" class="create-entity-button action-button entity-management-button" value="<%=t.entitymanagement.create%>"/>
+             </div>
+            </div>         
+          </div>
+        </div>
+        <%% } else { %>
+          <div class="form-fields bottom-margin">
+            <div class="container_12 bottom-border-solid bottom-margin bottom-space-1line ultra_less_contrast_text">
+              <div class="grid_9">
+                <span>&nbsp;</span>
+              </div>
+              <div class="grid_3">
+                <div class="top-margin">
+                  <div id="properties" class="smaller_text over_cursor right_text as_link less_contrast_text">
+                     <%=t.file_management.form.folder_properties%>
+                  </div>
+                </div>          
+              </div>
+            </div>
+            <div class="container_grid_pc">
+              <div id="gallery">
+                <%% var i=0;
+                    for (i=0; i< entity.file_attachments.length;i++) { %>
+                    <div class="entity-block-container">
+                       <div class="entity-block-container-inside all-space">
+                         <div style="height:108px">
+                             <div class="box-shadow" style="width:144px; height: 108px">
+                                <span class="centered_text" style="font-size:5em; display: block" data-icon="&#xe602;"></span> 
+                             </div> 
+                         </div>
+                       <div>
+                       <div class="smaller_text less_contrast_text centered_text top-margin">
+                         <%%= entity.file_attachments[i].path %>
+                       </div>
+                       <div class="smaller_text less_contrast_text centered_text top-margin">
+                         <%%= entity.file_attachments[i].literal_file_size %>
+                       </div>                       
+                    </div>
+                <%% } %>     
+              </div>
+            </div>    
+            <div id="properties_form" class="all-full-space box-shadow background-color-1" style="display:none">
+                <h3 class="bottom-border-solid"><%=t.file_management.form.folder_properties%></h3>
+                <%= partial :alert %>
+                <input type="hidden" id="id" name="id" class="fieldcontrol" <%% if (entity) { %> value="<%%= entity.id %>" <%% } %> />
+                <div class="formrow">
+                   <label for="name" class="fieldtitle"><%=t.file_management.form.name.label%> <span class="mandatoryfield">*</span></label>
+                   <input type="text" maxlength="80" size="80" id="name" name="name" class="fieldcontrol" <%% if (entity) { %> value="<%%= entity.name %>" <%% } %>/>
+                </div>   
+                <div class="bottom-navigation-bar navigation-bar">
+                  <div class="navigation-bar-crud-buttons">
+                    <input type="submit" class="update-entity-button action-button entity-management-button" value="<%=t.entitymanagement.update%>"/>
+                  </div>
+                </div>
+             </div>
+ 
+        <%% } %>
+     </form>
+     
+
+</script>

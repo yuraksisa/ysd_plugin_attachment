@@ -1,0 +1,88 @@
+ require(['jquery', 'YSDEntityManagement', 'YSDForms', 'YSDGui'],
+         function($, EntityManagement, YSDForms, YSDGui) {
+ 
+  function FileSetHook() {
+ 	   
+    this.entityKey = function(entity) {
+      return entity.id;
+    }
+
+    this.onEdit = function(entity) {
+      $('#name').focus();
+      $('#properties').bind('click', function() {
+         YSDGui.showElement($('#properties_form')[0], true);
+      });   	
+      this.configForm(entity);
+    };
+  
+    this.onNew = function() {
+  	  $('#name').focus();
+      $('#form_folder').validate({
+        submitHandler: function(form) 
+        {
+          return false;
+        },
+                               
+        rules : { // rules
+          'name': {
+             required: true
+          },
+        },
+            
+        messages : { // messages
+          'name': {
+             required : '<%=t.file_management.form_validation.name_required%>'
+          },
+        }
+            
+      }
+         );      
+    }
+                
+    this.configForm = function(entity) {
+             
+    }
+
+    this.formatFileManagementURL = function(entity) {
+      return '/admin/file/' + entity.id;
+    }
+
+    this.deleteFile = function(fileId) {
+
+      var self = this;
+
+      $.ajax( {
+                url  : "/photo/" + photoId,
+                type : 'DELETE',
+                success : function(data, textStatus, jqXHR) {
+                  alert('File deleted');
+                },
+                error : function(data, textStatus, jqXHR) {
+                  alert('Error deleting photo');
+                },
+                complete : function(jqXHR, textStatus) {
+
+                }
+      }); 
+       
+
+    }    
+
+  	
+  };
+  
+  var urls = { 
+  	           query_url  : '/api/filesets',
+    	         create_url : '/api/fileset',
+  	           update_url : '/api/fileset',
+  	           delete_url : '/api/fileset',
+  	           get_url    : '/api/fileset'
+  	         };
+  
+  var filesetHook = new FileSetHook();
+  var filesetManager = new EntityManagement(urls, 'fileset', 12, filesetHook, 
+    {hold_form_after_action: true, newInline: true, prefix: '/admin'});
+ 
+  $('.entity-title').html('<%=t.file_management.title%>');
+  
+ });

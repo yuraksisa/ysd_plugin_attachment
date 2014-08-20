@@ -23,7 +23,16 @@ storage:
   form_validation:
     id_required: Id obligatori
     adapter_required: Adaptador obligatori
-    account_required: Compte obligatoria  
+    account_required: Compte obligatoria
+file_management:
+  title: Gestor de fitxers
+  form:
+    new_folder: Nova carpeta
+    name: 
+      label: Nom  
+    folder_properties: Propietats de la carpeta      
+  form_validation:
+    name_required: Nom obligatori    
 attachment:
   attach_file: Adjuntar fitxer
   description: Adjunts

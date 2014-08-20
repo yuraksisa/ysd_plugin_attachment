@@ -23,6 +23,15 @@ storage:
     id_required: Id required
     adapter_required: Adapter required
     account_required: Account required 
+file_management:
+  title: File manager
+  form:
+    new_folder: New folder
+    name: 
+      label: Name
+    folder_properties: Folder properties   
+  form_validation:
+    name_required: Name required     
 attachment:
   attach_file: Attach file
   description: Attachments

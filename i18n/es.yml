@@ -23,6 +23,15 @@ storage:
     id_required: Id obligatorio
     adapter_required: Adaptador obligatorio
     account_required: Cuenta obligatoria
+file_management:
+  title: Gestor de ficheros
+  form:
+    new_folder: Nueva carpeta
+    name: 
+      label: Nombre
+    folder_properties: Propiedades de la carpeta
+  form_validation:
+    name_required: El nombre es obligatorio
 attachment:
   attach_file: Adjuntar fichero
   description: Adjuntos  
