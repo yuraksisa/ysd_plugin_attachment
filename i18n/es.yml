@@ -30,6 +30,7 @@ file_management:
     name: 
       label: Nombre
     folder_properties: Propiedades de la carpeta
+    upload_file: Añadir fichero
   form_validation:
     name_required: El nombre es obligatorio
 attachment:

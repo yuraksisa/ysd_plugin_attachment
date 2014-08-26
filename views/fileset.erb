@@ -57,6 +57,16 @@
 
 <script type="text/tmpl" id="element_template_form">
               
+     <form name="attachments" target="attachment_uploader" method="POST" enctype="multipart/form-data" action="/attachment" style="display:none">
+        <input type="file" name="file" id="file"/>
+        <input type="hidden" name="file_set_attachment" id="file_set_attachment"/>
+        <input type="hidden" name="storage" id="storage" value="<%= attachment_storage%>"/>
+        <input type="hidden" name="folder" id="folder"/>
+     </form>
+     <iframe id="attachment_uploader" name="attachment_uploader" style="display:none">
+        Your system does not support iframes 
+     </iframe>
+
      <form name="element" id="form_folder">
         <%% if (entity == null) { %>
         <div class="form-fields container_12">
@@ -90,25 +100,7 @@
               </div>
             </div>
             <div class="container_grid_pc">
-              <div id="gallery">
-                <%% var i=0;
-                    for (i=0; i< entity.file_attachments.length;i++) { %>
-                    <div class="entity-block-container">
-                       <div class="entity-block-container-inside all-space">
-                         <div style="height:108px">
-                             <div class="box-shadow" style="width:144px; height: 108px">
-                                <span class="centered_text" style="font-size:5em; display: block" data-icon="&#xe602;"></span> 
-                             </div> 
-                         </div>
-                       <div>
-                       <div class="smaller_text less_contrast_text centered_text top-margin">
-                         <%%= entity.file_attachments[i].path %>
-                       </div>
-                       <div class="smaller_text less_contrast_text centered_text top-margin">
-                         <%%= entity.file_attachments[i].literal_file_size %>
-                       </div>                       
-                    </div>
-                <%% } %>     
+              <div id="folder">   
               </div>
             </div>    
             <div id="properties_form" class="all-full-space box-shadow background-color-1" style="display:none">

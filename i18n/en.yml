@@ -29,7 +29,8 @@ file_management:
     new_folder: New folder
     name: 
       label: Name
-    folder_properties: Folder properties   
+    folder_properties: Folder properties
+    upload_file: Upload file   
   form_validation:
     name_required: Name required     
 attachment:

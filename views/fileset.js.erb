@@ -1,8 +1,13 @@
- require(['jquery', 'YSDEntityManagement', 'YSDForms', 'YSDGui'],
-         function($, EntityManagement, YSDForms, YSDGui) {
+ require(['jquery', 'YSDEntityManagement', 'YSDForms', 'YSDGui',
+          'YSDListManagement', 'YSDFileUploader', 'YSDMemoryDataSource'],
+         function($, EntityManagement, YSDForms, YSDGui, 
+           ListManagement, FileUploader, MemoryDataSource) {
  
   function FileSetHook() {
  	   
+    this.fileManager = null;     
+    this.fileUploader = null; 
+
     this.entityKey = function(entity) {
       return entity.id;
     }
@@ -40,7 +45,87 @@
     }
                 
     this.configForm = function(entity) {
-             
+       
+       this.filesConfiguration(entity);
+
+    }
+
+    this.filesConfiguration = function(entity) {
+      var self = this;
+
+      // File manager (manages the files in the folder)
+      var attachments = entity ? entity.file_attachments : [];
+      var fileDataSource = new MemoryDataSource(attachments, {id:'id',
+         description: function(data) {
+            return self.formatFile(data)
+         }});
+      this.fileManager = new ListManagement('folder', 
+                                            'file_list', 
+                                            fileDataSource,
+                                            '<%=t.file_management.form.upload_file%>',
+                                            'grid_20_pc centered_text');
+      
+      // File uploader (uploads a new file)
+      this.fileUploader = new FileUploader('attachments',         // the form
+                                           'file',                // input type file 
+                                           'album_photo_uploader' // the iframe);
+     
+      this.fileUploader.addListener('file_uploaded', function(event) {
+        var data = event.data.file;
+        var album_id = data.album.id;
+        self.selector.addElement( {id:data.id, 
+            description: '<img src="' + data.photo_url_small + '" class="album-photo" data-photo-path="' + '/album/' + album_id + '/photo/' + data.id + '"' + ' data-photo-url-tiny="' + data.photo_url_tiny + '"' + ' data-photo-url-small="' + data.photo_url_small + '"' + ' data-photo-url-medium="' + data.photo_url_medium + '"' + ' data-photo-url-full="' + data.photo_url_full + '" data-album-id="' + album_id + '" data-photo-id="' + data.id + '"/>'
+        });
+      });      
+
+      this.fileManager.addListener('add_element_button_click', function(event) {
+        self.fileUploader.uploadFile(); 
+      });
+
+      this.fileManager.addListener('elements_updated', function() {
+          $('img.album-photo').unbind('click');
+          $('img.album-photo').bind('click', function(event){
+             var album_id = $(this).attr('data-album-id');
+             var photo_id = $(this).attr('data-photo-id');
+             window.location.href = '/admin/photo/'+photo_id;
+          });
+      //  self.selectMainPhoto();
+      //  self.configSelectMainPhotoEvent();
+      });
+
+      this.fileManager.addListener('delete_element_button_click', function(event) {
+
+          self.manager.view.ask_for_confirmation(
+                 'Delete photo', 
+                 'Are you sure you want to delete this photo? This process can not be undone.',
+                 function(){
+                    self.deleteFile(event.data);
+                 });
+          
+      });
+
+
+
+    }
+
+    this.formatFile = function(file) {
+
+      return       '<div class="entity-block-container">' +
+                       '<div class="entity-block-container-inside all-space">' +
+                         '<div style="height:108px">' +
+                             '<div class="box-shadow" style="width:144px; height: 108px">' +
+                                '<span class="centered_text" style="font-size:5em; display: block" data-icon="&#xe602;"></span>' +
+                             '</div>' + 
+                         '</div>' +
+                       '<div>' +
+                       '<div class="smaller_text less_contrast_text centered_text top-margin">' +
+                         file.path +
+                      '</div>' +
+                       '<div class="smaller_text less_contrast_text centered_text top-margin">' +
+                         file.literal_file_size +
+                      '</div>' +                       
+                    '</div>';     
+
     }
 
     this.formatFileManagementURL = function(entity) {

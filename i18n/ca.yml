@@ -30,7 +30,8 @@ file_management:
     new_folder: Nova carpeta
     name: 
       label: Nom  
-    folder_properties: Propietats de la carpeta      
+    folder_properties: Propietats de la carpeta
+    upload_file: Afegir fitxer      
   form_validation:
     name_required: Nom obligatori    
 attachment:
