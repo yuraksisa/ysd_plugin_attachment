@@ -6,14 +6,14 @@ module Sinatra
         #
         # Site files console
         #
-        app.get '/admin/site/files', :allowed_usergroups => ['staff'] do
+        app.get '/admin/files', :allowed_usergroups => ['staff'] do
           load_page :attachment_dashboard
         end	
 
         #
         # Media Gallery configuration
         #
-        app.get '/admin/site/files/config', :allowed_usergroups => ['staff'] do
+        app.get '/admin/files/config', :allowed_usergroups => ['staff'] do
           locals = {}
           files_storage = SystemConfiguration::Variable.get_value('attachment.default_storage', nil)
           locals.store(:not_files_storage, (files_storage.nil? or files_storage.empty?) )

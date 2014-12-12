@@ -7,7 +7,7 @@ module Sinatra
         #
         # Album management page
         #
-        app.get "/admin/fileset/?*" do
+        app.get "/admin/files/fileset/?*" do
 
           load_em_page :fileset, :file_set, false
 
